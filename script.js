@@ -1,4 +1,4 @@
-const generateRandomData = (numDatasets = 4, numPoints = 14) => {
+const generateRandomData = (numDatasets = 2, numPoints = 14) => {
   const randomDate = () => new Date(Date.now() - Math.random() * 1e12).toDateString();
   const randomNumbers = (length, max = 20) =>
     Array.from({ length }, () => Math.floor(Math.random() * max));
@@ -8,8 +8,8 @@ const generateRandomData = (numDatasets = 4, numPoints = 14) => {
     dates: Array.from({ length: numPoints }, randomDate),
     data: Array.from({ length: numDatasets }, (_, i) => ({
       name: `Dataset ${i + 1}`,
-      data: randomNumbers(numPoints)
-    }))
+      data: randomNumbers(numPoints),
+    })),
   };
 };
 
@@ -31,7 +31,6 @@ const CHART_COLORS = [
   "236,161,27",
   "131,193,53",
 ];
-
 
 const getMinusVal = (number, length) => {
   const ratio = Math.floor(length / number);
@@ -135,7 +134,6 @@ const options = {
         pointStyleWidth: 23,
         font: { size: 14 },
       },
-
     },
   },
   scales: {
@@ -186,10 +184,10 @@ const options = {
   aspectRatio: 4 / 1,
 };
 
-const ctx = document.getElementById('lineChart').getContext('2d');
+const ctx = document.getElementById("lineChart").getContext("2d");
 
- new Chart(ctx, {
-  type: 'line',
+new Chart(ctx, {
+  type: "line",
   data: chartData,
-  options
+  options,
 });
